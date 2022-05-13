@@ -1,0 +1,217 @@
+/*Слайдер позиционируется с равными отступами слева и справа +10
+
+Соблюдено расположение картинок, подписей к ним и контролов +10
+
+Имеется анимация для смены картинок +20
+
+Имеется анимация для смены подписей к картинкам +10
+
+Подписи к картинкам должны быть строковыми значениями (текстом),
+т.е. текст не должен быть частью картинки +15
+
+Каждый контрол имеет большую область нажатия,
+чем размер самого контрола +5
+
+Контролы имеют интерактивность (момент наведения,
+момент нажатия, активный контрол, изменение курсора) +10
+
+Имеется мобилная версия слайдера и соблюдено расположение картинок,
+ подписей к ним и контролов +20
+
+Используются относительные едициы измерения для основных блоков
+ (картинки, контролы, подписи) (rem, em, %, vh, vw, fr and etc... )
+  - присутствует "резиновость" слайдера +10
+
+Все блоки/составные части слайдера (контролы, картинки, подписи к слайдеру)
+находя в базовом потоке дом-элементов, не позиционируются
+с помощью top, left, right, bottom.
+ Не используются псевдоэлементы(without afther and before). +10
+ 767px mobile        с 768 - ноутбук
+ background: url(images/background.jpg);
+  height: 100vh;
+
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: url(images/1ba.jpg);
+  overflow: hidden;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  grid-row-gap: 2vh;
+  margin: auto auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: grid;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.slides {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+
+img {
+  width: 96vmin;
+  height: 70vmin;
+}
+
+.texts {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: grid;
+  align-items: center;
+  justify-self: end;
+  width: 48vmin;
+}
+
+.text {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 100%;
+  align-self: flex-start;
+  background-color: transparent;
+  opacity: 0;
+  color: #00FF00;
+  font-family: 'Macondo', cursive;
+  font-size: 3.4vmin;
+}
+
+.buttons {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: flex-start;
+  width: 48vmin;
+  gap: 1.75vmin;
+}
+
+.button {
+  display: inline-block;
+  margin: 0;
+  border-radius: 50vmin;
+  border: 0.4vmin solid #008000;
+  cursor: pointer;
+  width: 2.75vmin;
+  height: 2.75vmin;
+  align-self: flex-start;
+}
+
+input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+label {
+  padding: 1vmin;
+  cursor: pointer;
+  display: flex;
+}
+
+.text,
+.slider {
+  transition: 1.4s;
+}
+
+#slide1:checked~.wrapper .slider .slides1,
+#slide1:checked~.wrapper .texts .text1,
+#slide2:checked~.wrapper .slider .slides2,
+#slide2:checked~.wrapper .texts .text2,
+#slide3:checked~.wrapper .slider .slides3,
+#slide3:checked~.wrapper .texts .text3,
+#slide4:checked~.wrapper .slider .slides4,
+#slide4:checked~.wrapper .texts .text4 {
+  opacity: 1;
+  transition: 1.2s ease-in-out;
+  /*  transform: rotate(3turn);*/
+}
+
+
+#slide1:checked~.wrapper .buttons .button1,
+#slide2:checked~.wrapper .buttons .button2,
+#slide3:checked~.wrapper .buttons .button3,
+#slide4:checked~.wrapper .buttons .button4 {
+  background: #2F4F4F;
+}
+
+/*#FFFF00;#00FF00 */
+.wrapper label:hover .button {
+  border-color: #FFFF00;
+  transform: scale(1.1);
+  transition: 0.7s;
+}
+
+.wrapper label:hover {
+  transition: 0.7s;
+}
+
+
+
+
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+
+  .texts {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-self: center;
+    width: 96vmin;
+  }
+
+  .text {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .buttons {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-content: center;
+    justify-self: center;
+    width: 96vmin;
+  }
+}
