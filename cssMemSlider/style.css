@@ -11,6 +11,8 @@ body {
   height: 100vh;
   background: url(images/1ba.jpg);
   overflow: hidden;
+  background-repeat: round;
+  background-size: cover;
 }
 
 .wrapper {
@@ -135,6 +137,13 @@ label {
 #slide3:checked~.wrapper .buttons .button3,
 #slide4:checked~.wrapper .buttons .button4 {
   background: #2F4F4F;
+}
+
+#slide1:active~.wrapper .buttons .button1,
+#slide2:active~.wrapper .buttons .button2,
+#slide3:active~.wrapper .buttons .button3,
+#slide4:active~.wrapper .buttons .button4 {
+  background: red;
 }
 
 .wrapper label:hover .button {
